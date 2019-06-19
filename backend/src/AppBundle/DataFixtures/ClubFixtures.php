@@ -36,7 +36,10 @@ class ClubFixtures extends Fixture
         foreach ($clubs as $c) {
             $club = new Club();
             $club->setName($c['name']);
+            $club->setSlug($c['slug']);
             $manager->persist($club);
+
+            $this->addReference($c['slug'], $club);
         }
 
         $manager->flush();

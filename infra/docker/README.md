@@ -19,27 +19,35 @@ Agregar entrada al /etc/hosts
 
 Entrar a la instancia de MariaDB para crear base de datos y usuarios
 ```
-docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga_api;"
-docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga_api.* TO 'laliga_api'@'%' IDENTIFIED BY 'laliga_api';"
+docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga;"
+docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
+docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga_test;"
+docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
 ```
 
-Entrar a la instancia de MariaDB para levantar el dump
-```
-mv dump.sql ../database
-docker exec -it laliga-api-dbserver bash
-mysql laliga_api < /var/lib/mysql/dump.sql
-rm /var/lib/mysql/dump.sql
-```
-
-Instalar vendor y configuración
+Instalar vendor, configuración y tests
 ```
 docker exec -it laliga-api-php bash
-cd /home/app
 cp app/config/parameters.yml.dist app/config/parameters.yml
+cp app/config/parameters_test.yml.dist app/config/parameters_test.yml
 composer install
+bin/console d:s:c
+bin/console d:s:c --env=test
+
+bin/console d:f:l --append
+bin/console d:f:l --append --env=test
+
+./vendor/bin/simple-phpunit
 ```
 
-Documentación: 
+Documentación:
+ 
+Clubs
 ```
-http://laliga-api.loc
+http://laliga-api.loc/api/v1/clubs
+```
+
+Players
+```
+http://laliga-api.loc/api/v1/clubs/1/players
 ```

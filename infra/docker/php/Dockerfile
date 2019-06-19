@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y apt-utils vim curl git unzip
-RUN apt-get install -y php7.0 php7.0-fpm php7.0-mysql php7.0-xml php7.0-curl
+RUN apt-get install -y php7.0 php7.0-fpm php7.0-mysql php7.0-xml php7.0-curl php7.0-mbstring
 
 ADD etc/php/7.0/cli/conf.d/config.ini /etc/php/7.0/cli/conf.d/
 ADD etc/php/7.0/fpm/conf.d/config.ini /etc/php/7.0/fpm/conf.d/

@@ -2,33 +2,22 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Club;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
-use Psr\Log\LoggerInterface;
 
 class ClubService
 {
     /** @var ManagerRegistry $doctrine */
     protected $doctrine;
 
-    /** @var LoggerInterface $logger */
-    protected $logger;
-
     /** @var ObjectRepository */
     protected $repository;
 
-    /**
-     * CollectionService constructor.
-     * @param ManagerRegistry $doctrine
-     * @param LoggerInterface $logger
-     */
-    public function __construct(
-        ManagerRegistry $doctrine,
-        LoggerInterface $logger
-    ) {
+    public function __construct(ManagerRegistry $doctrine)
+    {
         $this->doctrine = $doctrine;
-        $this->logger = $logger;
-        $this->repository = $this->doctrine->getRepository('AppBundle:Club');
+        $this->repository = $this->doctrine->getRepository(Club::class);
     }
 
     /**

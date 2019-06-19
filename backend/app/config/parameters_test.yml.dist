@@ -4,7 +4,7 @@
 parameters:
     database_host: laliga-api.dbserver
     database_port: ~
-    database_name: laliga
+    database_name: laliga_test
     database_user: laliga
     database_password: laliga
     # You should uncomment this if you want to use pdo_sqlite

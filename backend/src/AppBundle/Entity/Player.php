@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Player
@@ -12,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Player
 {
+    const PLAYERS = 'players';
+
     /**
      * @var int
      *
@@ -24,17 +28,25 @@ class Player
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Please enter a name")
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({Player::PLAYERS})
      */
     private $name;
 
     /**
+     * @Assert\NotBlank(message="Please enter a dorsal")
      * @var int
      *
      * @ORM\Column(name="dorsal", type="smallint")
      */
     private $dorsal;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="players")
+     * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     */
+    private $club;
 
     /**
      * Get id
@@ -92,5 +104,29 @@ class Player
     public function getDorsal()
     {
         return $this->dorsal;
+    }
+
+    /**
+     * Set club
+     *
+     * @param Club $club
+     *
+     * @return Player
+     */
+    public function setClub(Club $club = null)
+    {
+        $this->club = $club;
+
+        return $this;
+    }
+
+    /**
+     * Get club
+     *
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
     }
 }
