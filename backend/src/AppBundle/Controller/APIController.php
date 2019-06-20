@@ -41,10 +41,21 @@ class APIController extends AbstractFOSRestController
 
     /**
      * Get Players
+     * @Rest\Get("/players")
+     * @Rest\View(serializerGroups={Player::PLAYERS})
+     */
+    public function getPlayers()
+    {
+        $players = $this->playerService->getAll();
+        return View::create($players, Response::HTTP_OK);
+    }
+
+    /**
+     * Get Players
      * @Rest\Get("/clubs/{club}/players")
      * @Rest\View(serializerGroups={Player::PLAYERS})
      */
-    public function getPlayers(Club $club)
+    public function getClubPlayers(Club $club)
     {
         $players = $club->getPlayers();
         return View::create($players, Response::HTTP_OK);
