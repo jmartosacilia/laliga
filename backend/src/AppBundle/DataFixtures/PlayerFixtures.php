@@ -21,7 +21,7 @@ class PlayerFixtures extends Fixture
         foreach ($players as $p) {
             $player = new Player();
             $player->setName($p['name']);
-            $player->setDorsal(1);
+            $player->setDorsal($p['dorsal']);
             $player->setClub($this->getReference($p['club']));
             $manager->persist($player);
         }

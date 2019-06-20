@@ -39,6 +39,7 @@ class Player
      * @var int
      *
      * @ORM\Column(name="dorsal", type="smallint")
+     * @Groups({Player::PLAYERS})
      */
     private $dorsal;
 

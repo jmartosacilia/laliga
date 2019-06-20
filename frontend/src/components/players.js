@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Figure from 'react-bootstrap/Figure'
+import queryString from 'query-string'
 
 class Players extends React.Component {
     state = {
@@ -14,21 +15,23 @@ class Players extends React.Component {
         console.log(this);
         return (
             <Container className="text-center">
-                <h1>Player</h1>
+                <h1>Players</h1>
                 <Row>
                     {this.state.players.map((player) => (
                         <Col xs={4}>
                             <Figure class="text-center" style={{
-                                border: '1px solid gray'
                             }}>
                                 <Figure.Image
                                     width={120}
                                     height={120}
                                     alt="120x120"
-                                    src={"http://laliga-api.loc/" + player['shield']}
+                                    src={"http://laliga-api.loc/images/soccer-t-shirt.png"}
                                 />
+                                <Figure.Caption class="centered">
+                                    <p>{player['dorsal']}</p>
+                                </Figure.Caption>
                                 <Figure.Caption class="text-center">
-                                    <h4>{player['name']}</h4>
+                                    <p>{player['name']}</p>
                                 </Figure.Caption>
                             </Figure>
                         </Col>
@@ -37,7 +40,9 @@ class Players extends React.Component {
             </Container>)
     }
     componentDidMount() {
-        const uri = 'http://laliga-api.loc/api/v1/clubs/' + this.props.match.params['id'] + '/players';
+        const value = queryString.parse(this.props.location.search);
+        const club = value.club;
+        const uri = 'http://laliga-api.loc/api/v1/clubs/' + club + '/players';
         fetch(uri)
             .then(res => res.json())
             .then((data) => {
