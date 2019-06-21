@@ -21,10 +21,12 @@ Agregar entrada al /etc/hosts
 
 Ejecutar comandos para crear base de datos y usuarios
 ```
-docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga;"
-docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga'; FLUSH PRIVILEGES;"
-docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga_test;"
-docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga'; FLUSH PRIVILEGES;"
+docker exec -it laliga-api-dbserver mysql
+"CREATE DATABASE laliga;"
+"GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
+"CREATE DATABASE laliga_test;"
+"GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
+"exit;"
 ```
 
 Instalar vendor, configuración y tests
@@ -61,7 +63,10 @@ http://laliga-api.loc/api/v1/clubs/1/players
 
 Documentación Frontend:
 
+(Recarge la home si ve la pantalla en blanco, el contener de docker demora en cargar la primera vez)
+
 Home
 ```
 http://laliga.loc:3001
 ```
+
