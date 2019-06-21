@@ -22,11 +22,11 @@ Agregar entrada al /etc/hosts
 Ejecutar comandos para crear base de datos y usuarios
 ```
 docker exec -it laliga-api-dbserver mysql
-"CREATE DATABASE laliga;"
-"GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
-"CREATE DATABASE laliga_test;"
-"GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
-"exit;"
+CREATE DATABASE laliga;
+GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';
+CREATE DATABASE laliga_test;"
+GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';
+exit;
 ```
 
 Instalar vendor, configuración y tests
