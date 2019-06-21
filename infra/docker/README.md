@@ -63,7 +63,7 @@ http://laliga-api.loc/api/v1/clubs/1/players
 
 Documentación Frontend:
 
-(Recarge la home si ve la pantalla en blanco, el contener de docker demora en cargar la primera vez)
+(Recargar la home si ve la pantalla en blanco, el contener de docker demora en cargar la primera vez)
 
 Home
 ```
