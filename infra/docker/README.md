@@ -1,5 +1,7 @@
 ## Instalación de Infraestructura
 
+Desde el directorio infra/docker
+
 Copiar `dist.env` a `.env` y modificar los valores necesarios.
 
 Hacer build de los contenedores
@@ -20,9 +22,9 @@ Agregar entrada al /etc/hosts
 Ejecutar comandos para crear base de datos y usuarios
 ```
 docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga;"
-docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
+docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga'; FLUSH PRIVILEGES;"
 docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga_test;"
-docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"
+docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga_test.* TO 'laliga'@'%' IDENTIFIED BY 'laliga'; FLUSH PRIVILEGES;"
 ```
 
 Instalar vendor, configuración y tests
@@ -49,11 +51,17 @@ http://laliga-api.loc/api/v1/clubs
 
 Players
 ```
+http://laliga-api.loc/api/v1/players
+```
+
+Players en un club
+```
 http://laliga-api.loc/api/v1/clubs/1/players
 ```
 
 Documentación Frontend:
 
+Home
 ```
-http://laliga:3001
+http://laliga.loc:3001
 ```

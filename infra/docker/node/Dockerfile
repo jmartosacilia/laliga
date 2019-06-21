@@ -5,7 +5,7 @@ FROM node:12.2.0-alpine
 WORKDIR /home/app
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /home/app/node_modules/.bin:$PATH
+#ENV PATH /home/app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
 COPY package.json /home/app/package.json
