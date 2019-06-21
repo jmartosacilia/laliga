@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class PlayerRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy([], ['id' => 'DESC']);
+    }
 }

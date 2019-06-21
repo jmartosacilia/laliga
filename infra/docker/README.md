@@ -34,8 +34,8 @@ composer install
 bin/console d:s:c
 bin/console d:s:c --env=test
 
-bin/console d:f:l --append
-bin/console d:f:l --append --env=test
+bin/console d:f:l
+bin/console d:f:l --env=test
 
 ./vendor/bin/simple-phpunit
 ```
