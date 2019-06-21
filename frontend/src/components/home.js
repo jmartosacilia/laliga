@@ -17,6 +17,7 @@ class Home extends React.Component {
                 <Row className="text-center">
                     <Col>
                         <Figure>
+                            <p>Project made by Juan Martos on the name of Acilia Internet for LaLiga.</p>
                             <p>This is an application created with ReactJS 16.3.</p>
                             <p>If you go to the <NavLink to="/clubs">Clubs</NavLink> tab you will see a list of teams belonging to LaLiga.</p>
                             <p>Clicking on the shields you can see the list of players of the team selects.</p>

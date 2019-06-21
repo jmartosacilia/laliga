@@ -29,6 +29,12 @@ class PlayerService
         return $this->repository->findAll();
     }
 
+    /**
+     * Add player
+     * @param Club $club
+     * @param Player $player
+     * @return Player
+     */
     public function addPlayer(Club $club, Player $player)
     {
         $player->setClub($club);

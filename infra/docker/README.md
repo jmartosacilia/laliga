@@ -17,7 +17,7 @@ Agregar entrada al /etc/hosts
 127.0.0.1 laliga-api.loc laliga.loc
 ```
 
-Entrar a la instancia de MariaDB para crear base de datos y usuarios
+Ejecutar comandos para crear base de datos y usuarios
 ```
 docker exec -i laliga-api-dbserver mysql -e "CREATE DATABASE laliga;"
 docker exec -i laliga-api-dbserver mysql -e "GRANT ALL ON laliga.* TO 'laliga'@'%' IDENTIFIED BY 'laliga';"

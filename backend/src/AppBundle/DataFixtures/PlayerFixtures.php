@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures;
 
+use AppBundle\Entity\Club;
 use AppBundle\Entity\Player;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -137,7 +138,9 @@ class PlayerFixtures extends Fixture
             $player = new Player();
             $player->setName($p['name']);
             $player->setDorsal($p['dorsal']);
-            $player->setClub($this->getReference($p['club']));
+            /** @var Club $club */
+            $club = $this->getReference($p['club']);
+            $player->setClub($club);
             $manager->persist($player);
         }
 

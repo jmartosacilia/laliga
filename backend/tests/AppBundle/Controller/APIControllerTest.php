@@ -5,6 +5,7 @@ namespace Tests\AppBundle\Controller;
 use AppBundle\Entity\Club;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class APIControllerTest extends WebTestCase
 {
