@@ -109,6 +109,8 @@ class APIControllerTest extends WebTestCase
 
         $crawler = $client->request('POST', $uri, $data);
 
+        var_dump($client->getResponse()->getContent());
+
         $this->assertEquals(400, $client->getResponse()->getStatusCode());
     }
 

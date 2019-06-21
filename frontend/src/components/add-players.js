@@ -3,6 +3,7 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form'
+import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import queryString from 'query-string';
 
@@ -12,7 +13,10 @@ class AddPlayers extends React.Component {
         this.addPlayer = this.addPlayer.bind(this);
     }
     state = {
-        clubs: []
+        clubs: [],
+        classAlertSuccess: 'd-none',
+        classAlertDanger: 'd-none',
+        textAlertSuccess: '',
     };
     render() {
         return (
@@ -36,15 +40,22 @@ class AddPlayers extends React.Component {
                         <Form.Label>Player dorsal</Form.Label>
                         <Form.Control placeholder="99" as="input" type="number" name="dorsal" />
                     </Form.Group>
-                    <Button type="submit">Add</Button>
+                    <Form.Group controlId="dorsal">
+                        <Button variant="primary" type="submit" size="lg" block>Add</Button>
+                    </Form.Group>
                 </Form>
+                <Alert className={this.state.classAlertDanger} variant="danger" >
+                    An error occurred when adding the player
+                </Alert>
+                <Alert className={this.state.classAlertSuccess} variant="success">
+                    {this.state.textAlertSuccess}
+                </Alert>
             </Container>)
     }
     componentDidMount() {
         fetch('http://laliga-api.loc/api/v1/clubs')
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
                 this.setState({ clubs: data })
             })
             .catch(console.log);
@@ -59,19 +70,27 @@ class AddPlayers extends React.Component {
 
         const uri = 'http://laliga-api.loc/app_dev.php/api/v1/clubs/' + club + '/players';
 
-        fetch(uri, {
+        this.setState({classAlertSuccess: 'd-none'});
+        this.setState({classAlertDanger: 'd-none'});
+
+        let _this = this;
+        const options = {
             method: 'post',
             body: queryString.stringify({dorsal: dorsal, name: name}),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            success: {
-
-            },
-            error: {
-
             }
-        });
+        };
+
+        fetch(uri, options)
+            .then(function(text) {
+                _this.setState({classAlertSuccess: 'd-block'})
+                _this.setState({textAlertSuccess: 'The player ' + name + ' has been added correctly'})
+            })
+            .catch(function(error) {
+                _this.setState({classAlertDanger: 'd-block'})
+            }
+        );
     }
 }
 

@@ -16,7 +16,7 @@ services:
         image: laliga-api-php
         build: ./php
         volumes:
-            - ${APP_DIR}:/home/app:cached
+            - ${APP_DIR_BACKEND}:/home/app:cached
         links:
             - dbserver:laliga-api.dbserver
         network_mode: bridge
@@ -27,6 +27,13 @@ services:
             - ${APP_DB}:/var/lib/mysql
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        network_mode: bridge
+    node:
+        container_name: laliga-api-node
+        image: laliga-api-node
+        build: ./node
+        volumes:
+            - ${APP_DIR_FRONTEND}:/home/app:cached
         ports:
-            - ${PORT_DB}:3306
+            - "3001:3000"
         network_mode: bridge

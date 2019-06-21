@@ -79,6 +79,7 @@ class APIController extends AbstractFOSRestController
                 $player
             );
 
+            //return View::create($player, 400);
             return View::create($player, Response::HTTP_CREATED);
         } else {
             return View::create($form);
