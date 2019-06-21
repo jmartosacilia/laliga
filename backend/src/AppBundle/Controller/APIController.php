@@ -40,6 +40,17 @@ class APIController extends AbstractFOSRestController
     }
 
     /**
+     * Get Clubs
+     * @Rest\Get("/clubs/{club}")
+     * @Rest\View(serializerGroups={Club::CLUBS, Player::PLAYERS})
+     * @return View
+     */
+    public function getClub(Club $club)
+    {
+        return View::create($club, Response::HTTP_OK);
+    }
+
+    /**
      * Get Players
      * @Rest\Get("/players")
      * @Rest\View(serializerGroups={Player::PLAYERS})
@@ -79,7 +90,6 @@ class APIController extends AbstractFOSRestController
                 $player
             );
 
-            //return View::create($player, 400);
             return View::create($player, Response::HTTP_CREATED);
         } else {
             return View::create($form);

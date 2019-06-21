@@ -45,6 +45,7 @@ class Club
 
     /**
      * @ORM\OneToMany(targetEntity="Player", mappedBy="club")
+     * @Groups({Player::PLAYERS})
      */
     private $players;
 

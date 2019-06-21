@@ -14,7 +14,7 @@ docker-compose up -d
 
 Agregar entrada al /etc/hosts
 ```
-127.0.0.1 laliga-api.loc
+127.0.0.1 laliga-api.loc laliga.loc
 ```
 
 Entrar a la instancia de MariaDB para crear base de datos y usuarios
@@ -55,5 +55,5 @@ http://laliga-api.loc/api/v1/clubs/1/players
 Documentación Frontend:
 
 ```
-http://localhost:3001
+http://laliga:3001
 ```

@@ -11,26 +11,26 @@ class ClubFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $clubs = [
-            ['name' => 'Alavés', 'slug' => 'alaves'],
+            ['name' => 'Villarreal', 'slug' => 'villareal'],
+            ['name' => 'Leganés', 'slug' => 'leganes' ],
             ['name' => 'Athletic', 'slug' => 'athletic'],
-            ['name' => 'Atlético', 'slug' => 'atletico' ],
-            ['name' => 'Barcelona', 'slug' => 'barcelona'],
+            ['name' => 'Eibar', 'slug' => 'eibar'],
+            ['name' => 'Girona', 'slug' => 'girona' ],
+            ['name' => 'Real Madrid', 'slug' => 'real-madrid'],
             ['name' => 'Betis', 'slug' => 'betis'],
             ['name' => 'Celta', 'slug' => 'celta' ],
-            ['name' => 'Eibar', 'slug' => 'eibar'],
+            ['name' => 'Levante', 'slug' => 'levante'],
             ['name' => 'Espanyol', 'slug' => 'espanyol' ],
             ['name' => 'Getafe', 'slug' => 'getafe' ],
-            ['name' => 'Girona', 'slug' => 'girona' ],
             ['name' => 'Huesca', 'slug' => 'huesca'],
-            ['name' => 'Leganés', 'slug' => 'leganes' ],
-            ['name' => 'Levante', 'slug' => 'levante'],
+            ['name' => 'Barcelona', 'slug' => 'barcelona'],
             ['name' => 'Real Sociedad', 'slug' => 'real-sociedad' ],
             ['name' => 'Rayo', 'slug' => 'rayo'],
-            ['name' => 'Real Madrid', 'slug' => 'real-madrid'],
             ['name' => 'Real Valladolid', 'slug' => 'real-valladolid'],
+            ['name' => 'Atlético', 'slug' => 'atletico' ],
             ['name' => 'Sevilla', 'slug' => 'sevilla'],
             ['name' => 'Valencia', 'slug' => 'valencia'],
-            ['name' => 'Villarreal', 'slug' => 'villareal'],
+            ['name' => 'Alavés', 'slug' => 'alaves'],
         ];
 
         foreach ($clubs as $c) {

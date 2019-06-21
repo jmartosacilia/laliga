@@ -34,7 +34,41 @@ class APIControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
+    public function testClub()
+    {
+        /** @var Club $club */
+        $club = $this->getClubBySlug('alaves');
+
+        $uri = sprintf('/api/v1/clubs/%s', $club->getId());
+
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', $uri);
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testClub404()
+    {
+        $uri = sprintf('/api/v1/clubs/%s', 0);
+
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', $uri);
+
+        $this->assertEquals(404, $client->getResponse()->getStatusCode());
+    }
+
     public function testPlayers()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/api/v1/players');
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function testClubPlayers()
     {
         /** @var Club $club */
         $club = $this->getClubBySlug('alaves');
@@ -48,7 +82,7 @@ class APIControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testPlayers404()
+    public function testClubPlayers404()
     {
         $client = static::createClient();
 
@@ -108,8 +142,6 @@ class APIControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('POST', $uri, $data);
-
-        var_dump($client->getResponse()->getContent());
 
         $this->assertEquals(400, $client->getResponse()->getStatusCode());
     }

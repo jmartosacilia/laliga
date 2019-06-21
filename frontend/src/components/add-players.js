@@ -26,19 +26,19 @@ class AddPlayers extends React.Component {
                 <Form onSubmit={this.addPlayer} method="post">
                     <Form.Group controlId="name">
                         <Form.Label>Player name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" name="name" />
+                        <Form.Control type="text" placeholder="Enter name" name="name" required />
                     </Form.Group>
                     <Form.Group controlId="club">
                         <Form.Label>Player club</Form.Label>
                         <Form.Control as="select" name="club">
                             {this.state.clubs.map((club, index) => (
-                            <option value={club['id']}>{club['name']}</option>
+                            <option key={club.id} value={club['id']}>{club['name']}</option>
                             ))}
                         </Form.Control>
                     </Form.Group>
                     <Form.Group controlId="dorsal">
                         <Form.Label>Player dorsal</Form.Label>
-                        <Form.Control placeholder="99" as="input" type="number" name="dorsal" />
+                        <Form.Control placeholder="00" as="input" type="number" name="dorsal" required />
                     </Form.Group>
                     <Form.Group controlId="dorsal">
                         <Button variant="primary" type="submit" size="lg" block>Add</Button>
@@ -53,7 +53,8 @@ class AddPlayers extends React.Component {
             </Container>)
     }
     componentDidMount() {
-        fetch('http://laliga-api.loc/api/v1/clubs')
+        const uri = process.env.REACT_APP_API_URL + '/api/v1/clubs';
+        fetch(uri)
             .then(res => res.json())
             .then((data) => {
                 this.setState({ clubs: data })
@@ -68,7 +69,7 @@ class AddPlayers extends React.Component {
         let club = data.get('club');
         let dorsal = data.get('dorsal');
 
-        const uri = 'http://laliga-api.loc/app_dev.php/api/v1/clubs/' + club + '/players';
+        const uri = process.env.REACT_APP_API_URL + '/api/v1/clubs/' + club + '/players';
 
         this.setState({classAlertSuccess: 'd-none'});
         this.setState({classAlertDanger: 'd-none'});

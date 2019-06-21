@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class ClubRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy([], ['name' => 'ASC']);
+    }
 }

@@ -18,8 +18,8 @@ class Clubs extends React.Component {
                 <br/>
                 <Row className="text-center">
                     {this.state.clubs.map((club, index) => (
-                        <Col xs={4}>
-                                <Figure class="text-center">
+                        <Col xs={4} className="text-center" key={club.id}>
+                                <Figure>
                                     <NavLink
                                         to={"/players?club=" + club.id}
                                         style={{textDecoration:'none'}}
@@ -30,10 +30,10 @@ class Clubs extends React.Component {
                                             width={120}
                                             height={120}
                                             alt="120x120"
-                                            src={"http://laliga-api.loc/" + club['shield']}
+                                            src={process.env.REACT_APP_API_URL + '/' + club['shield']}
                                         />
-                                        <Figure.Caption class="text-center">
-                                            <p>{club['name']}</p>
+                                        <Figure.Caption>
+                                            <h4>{club['name']}</h4>
                                         </Figure.Caption>
                                     </NavLink>
                                 </Figure>
@@ -43,10 +43,10 @@ class Clubs extends React.Component {
             </Container>)
     }
     componentDidMount() {
-        fetch('http://laliga-api.loc/api/v1/clubs')
+        const uri = process.env.REACT_APP_API_URL + '/api/v1/clubs';
+        fetch(uri)
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
                 this.setState({ clubs: data })
             })
             .catch(console.log);
